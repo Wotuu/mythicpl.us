@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Your quick guide to all things mythic plus. Check this week's affixes, get loot information, browse curated addons and find groupfinding Discords!">
     <meta name="keywords" content="mythic+,mythic_plus,mythic_+,world of warcraft, mythic dungeons,warcraft,mythic plus, legion, warlords, keystone, keystone affixes, affixes, keystones">
-    
     <meta name="theme-color" content="#282a36">
     <meta property="og:title" content="what m+ garbage do i have to deal with this week?">
     <meta property="og:type" content="website">
@@ -17,6 +16,8 @@
 </head>
 
 <body id="home">
+    <div id="barba-wrapper">
+    <div class="barba-container">
     <button class="menu-button pulse" id="open-button"><strong>?</strong><span>Open Menu</span></button>
     <title class="trn">what m+ garbage do i have to deal with this week?</title>
     <main class="main" id="this_week">
@@ -599,7 +600,7 @@
                     </tbody>
                 </table>
                 <div class="table__description">
-                    <h2>Note: The numbers in this table are adjusted for Battle for Azeroth proper.</h3>
+                    <h2>Note: The numbers in this table are adjusted for Battle for Azeroth proper.</h2>
                     <p class="trn">The chest at the end of the run guarantees the <strong>GROUP</strong> two pieces of loot from the dungeon loot table. If you beat the timer you will be awarded one extra piece of loot.</p>
                     <p class="trn">In addition, roughly every 3 difficulty levels past 15 will award you with an additional piece of loot.</p>
                     <p class="affixes-list__note trn">Example time! You beat a level 15 keystone within the timer and your group is awarded 3 pieces of loot. Later, you beat a level 18 keystone within the timer and your group SHOULD BE awarded with 4 pieces of loot. Repeat every three levels. 21 = 5 pieces of loot, 24 = 6 pieces of loot, etc.</p>
@@ -622,6 +623,7 @@
                 </ul>
                 <ul><h2 style="color:#a335ee">Revered Patrons</h2>
                     <li>Iscari0t</li>
+                </ul>
                 <ul><h2 style="color:#0070dd">Honored Patrons</h2>
                 </ul>
                 <ul><h2 style="color:#1eff00">Friendly Patrons</h2>
@@ -660,7 +662,7 @@
         </nav>
     </div>
         <footer class="footer">
-        <p>Looking for a guild? Look no more! <a href="https://mythicpl.us/epidemic">Epidemic (US Thrall - Horde)</a> is recruiting!</p>
+        <p>Looking for a guild? Look no more! <a href="http://10.0.10.19/epidemic">Epidemic (US Thrall - Horde)</a> is recruiting!</p>
             <p><span class="trn">suggestions welcome. Reach me by:</span></p>
             <ul>
                 <li class="trn">discord: domain#0001 OR the <a href="https://discord.gg/Z7GPUw8">offical mythicpl.us discord ;)</a></li>
@@ -672,23 +674,43 @@
             </br>
             </br>
         </footer>
-
+        </div>
+        </div>
     </main>
     <link rel="stylesheet" href="/min/?f=/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto Mono" rel="stylesheet">
     <script type="text/javascript" src="/min/?g=js"></script>
-
-    <script type="text/javascript">
-    var canvas1Settings = {
-        target: 'confetti',
-        max: 75,
-        props: ['circle', 'square', 'triangle', 'line'],
-        colors: [[76,175,80],[255,152,0],[213,0,0]],
-        clock: 15,
-        size: 2,
-    };
-    var confetti = new ConfettiGenerator(canvas1Settings);
-    confetti.render();
-</script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto Mono" rel="stylesheet">
+    <script type="text/javascript">var canvas1Settings = {target: 'confetti',max: 75,props: ['circle', 'square', 'triangle', 'line'],colors: [[76,175,80],[255,152,0],[213,0,0]],clock: 15,size: 2,};var confetti = new ConfettiGenerator(canvas1Settings);confetti.render();</script>
+    <script>
+          $('document').ready(function(){
+            var transEffect = Barba.BaseTransition.extend({
+                start: function(){
+                  this.newContainerLoading.then(val => this.fadeInNewcontent($(this.newContainer)));
+                },
+                fadeInNewcontent: function(nc) {
+                  nc.hide();
+                  var _this = this;
+                  $(this.oldContainer).fadeOut(1000).promise().done(() => {
+                    nc.css('visibility','visible');
+                    nc.fadeIn(1000, function(){
+                      _this.done();
+                    })
+                  });
+                }
+            });
+            Barba.Pjax.getTransition = function() {
+              return transEffect;
+            }
+            Barba.Pjax.start();
+          });
+        </script>
+        <script>
+            Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+            var script = document.createElement("script"); // Make a script DOM node
+                script.src = "http://10.0.10.19/min/?g=affix"; // Set it's src to the provided URL
+                document.head.appendChild(script);
+                window.scrollTo(0, 0);
+            });
+        </script>
 </body>
 </html>
