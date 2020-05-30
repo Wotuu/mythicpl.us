@@ -7,4 +7,4 @@ If you are making style or script changes, be sure to adjust the links and scrip
 
 Most notably, you'll have to call all the individual Javascript files as they are currently all being concatenated and minified to reduce requests.  
 
-If you need assistance, reach out to me on Discord
+If you need assistance, reach out to me on Discord @domain#0001
